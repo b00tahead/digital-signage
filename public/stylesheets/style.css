@@ -44,11 +44,21 @@ body {
   background-position: bottom left;
   /*padding: 0 80px 0 70px;*/
 }
+
+.screen-content .sidebar-search {
+  width: 640px;
+}
+
 .screen-content .filter-group {
   margin-top: 330px;
   width: 640px;
-  padding: 0 80px;
+  /*padding: 0 80px;*/
 }
+
+.screen-content #filters {
+  width: 640px;
+}
+
 .screen-content .filter-navigation {
   list-style: none;
   margin: 0;
