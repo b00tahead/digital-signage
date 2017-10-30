@@ -27,6 +27,7 @@ body {
 .sidebar,
 .schedule-content {
   height: 1020px;
+  width: 640px;
 }
 
 .sidebar-fixed {
@@ -41,17 +42,18 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: bottom left;
-  padding: 0 80px 0 70px;
+  /*padding: 0 80px 0 70px;*/
 }
 .screen-content .filter-group {
   margin-top: 330px;
+  width: 640px;
+  padding: 0 80px;
 }
 .screen-content .filter-navigation {
   list-style: none;
   margin: 0;
   padding: 0;
   text-align: right;
-  margin-bottom: 110px;
 }
 .screen-content .filter-navigation li {
   font-size: 16px;
