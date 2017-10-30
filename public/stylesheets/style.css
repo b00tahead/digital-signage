@@ -8,38 +8,32 @@ body {
 
 #main,
 .container-fluid,
-.row,
-.sidebar,
-.schedule-content {
-  height: 100%;
+.sidebar {
+  height: 1020px;
+  padding: 0;
 }
 
 .flexcontainer {
   display: -webkit-flex;
-   display: flex;
-   -webkit-flex-direction: row
-   flex-direction: row;
-   -webkit-align-items: center;
-   align-items: center;
-   -webkit-justify-content: center;
-   justify-content: center;
+  display: flex;
+  -webkit-flex-direction: row
+  flex-direction: row;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
 }
 
 .sidebar,
 .schedule-content {
-  height: 100%;
-}
-
-.sidebar {
-  padding-left: 0;
+  height: 1020px;
 }
 
 .sidebar-fixed {
   position: fixed;
   height: 1020px;
-  width: 33.33333333333%;
-  max-width: 33.3333333333%;
-  padding: 0 65px 0 57.5px;
+  width: 640px;
+  /*padding: 0 65px 0 57.5px;*/
 }
 
 .screen-content .sidebar-fixed {
@@ -50,7 +44,7 @@ body {
   padding: 0 80px 0 70px;
 }
 .screen-content .filter-group {
-  margin-top: 453px;
+  margin-top: 330px;
 }
 .screen-content .filter-navigation {
   list-style: none;
@@ -96,16 +90,8 @@ body {
 }
 
 .screen-content .schedule-content {
-  position: fixed;
   height: 1020px;
-  width: 66.66666666667%;
-  max-width: 66.6666666667%;
-  /*padding: 0 65px 0 57.5px;*/
-}
-.screen-content .schedule-wrapper {
-  padding-left: 60px;
-  padding-right: 60px;
-  background-color: #019cff;
+  width: 1280px;
 }
 
 .screen-content p {

@@ -59,36 +59,37 @@ block content
                             a(href="#" data-filter="." class="button") Track &amp; Field
                           li
                             a(href="#" data-filter="." class="button") Volleyball
-        div(class="schedule-content col-sm-8")
-          div(class="athletics-banner row flexcontainer")
-            div(class="col-sm-12")
-              img(src="/images/uk_main.png" class="center-block")
-          div(class="schedule-name row flexcontainer")
-            div(class="col-sm-12")
-              p Composite Schedule
-          div(class="teams-grid row")
-            div(class="col-sm-12 teams-grid-container")
-              each game in games.gameData
-                div(class="teams-grid-row")
-                  div(class="teams-grid-item teams-grid-sport flexcontainer text-center")
-                    p(class="rotate") #{game.sport}
-                  div(class="teams-grid-item teams-grid-logo")
-                    img(src=game.opponentLogo)
-                  div(class="teams-grid-item teams-grid-game-info")
-                    p(class='game-time')
-                      span(class="day") #{game.gameDay}
-                      if game.gameTime
-                        span(class="time") #{game.gameTime}
-                    p(class="game-opponent")
-                      if game.homeGame
-                        span(class="home-away home-game") VS
-                      else
-                        span(class="home-away away-game") AT
-                      span(class="opponent-name") #{game.opponentName}
-                    p(class="game-promo") #{game.gamePromoName}
-                  div(class="teams-grid-item teams-grid-game-location")
-                    p(class="location") #{game.location}
-                    p(class="tv") #{game.tvProvider}
-                  div(class="teams-grid-item teams-grid-results flexcontainer")
-                    span #{game.gameResult}
-            
+          div(class="schedule-content col-sm-8")
+            div(class="container-fluid")
+              div(class="athletics-banner row flexcontainer")
+                div(class="col-sm-12")
+                  img(src="/images/uk_main.png" class="center-block")
+              div(class="schedule-name row flexcontainer")
+                div(class="col-sm-12")
+                  p Composite Schedule
+              div(class="teams-grid row")
+                div(class="col-sm-12 teams-grid-container")
+                  each game in games.gameData
+                    div(class="teams-grid-row")
+                      div(class="teams-grid-item teams-grid-sport flexcontainer text-center")
+                        p(class="rotate") #{game.sport}
+                      div(class="teams-grid-item teams-grid-logo")
+                        img(src=game.opponentLogo)
+                      div(class="teams-grid-item teams-grid-game-info")
+                        p(class='game-time')
+                          span(class="day") #{game.gameDay}
+                          if game.gameTime
+                            span(class="time") #{game.gameTime}
+                        p(class="game-opponent")
+                          if game.homeGame
+                            span(class="home-away home-game") VS
+                          else
+                            span(class="home-away away-game") AT
+                          span(class="opponent-name") #{game.opponentName}
+                        p(class="game-promo") #{game.gamePromoName}
+                      div(class="teams-grid-item teams-grid-game-location")
+                        p(class="location") #{game.location}
+                        p(class="tv") #{game.tvProvider}
+                      div(class="teams-grid-item teams-grid-results flexcontainer")
+                        span #{game.gameResult}
+                
