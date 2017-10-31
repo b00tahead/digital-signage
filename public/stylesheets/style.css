@@ -1,4 +1,4 @@
-html,
+/*html,
 body {
   height: 100%;
   margin: 0;
@@ -34,7 +34,6 @@ body {
   position: fixed;
   height: 1020px;
   width: 640px;
-  /*padding: 0 65px 0 57.5px;*/
 }
 
 .screen-content .sidebar-fixed {
@@ -42,7 +41,6 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: bottom left;
-  /*padding: 0 80px 0 70px;*/
 }
 
 .screen-content .sidebar-search {
@@ -52,7 +50,6 @@ body {
 .screen-content .filter-group {
   margin-top: 330px;
   width: 640px;
-  /*padding: 0 80px;*/
 }
 
 .screen-content #filters {
@@ -261,4 +258,4 @@ body {
   font-size: 22px;
   font-style: italic;
   font-weight: 700;
-}
+}*/
