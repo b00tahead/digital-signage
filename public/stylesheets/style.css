@@ -27,21 +27,21 @@ body {
 .sidebar,
 .schedule-content {
   height: 1020px;
-  /*width: 640px;*/
+  width: 640px;
 }
 
 .sidebar-fixed {
   position: fixed;
   height: 1020px;
-  width: 33.33333333333%;
+  width: 640px;
   padding: 0 80px;
 }
 
 .screen-content .sidebar-fixed {
-  background-image: url("/images/wildcat_logo.png");
+  /*background-image: url("/images/wildcat_logo.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: bottom left;
+  background-position: bottom left;*/
 }
 
 .screen-content .sidebar-search {
@@ -101,7 +101,7 @@ body {
 
 .screen-content .schedule-content {
   height: 1020px;
-  /*width: 1280px;*/
+  width: 1280px;
 }
 
 .screen-content p {
