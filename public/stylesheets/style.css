@@ -1,4 +1,4 @@
-/*html,
+html,
 body {
   height: 100%;
   margin: 0;
@@ -27,13 +27,14 @@ body {
 .sidebar,
 .schedule-content {
   height: 1020px;
-  width: 640px;
+  /*width: 640px;*/
 }
 
 .sidebar-fixed {
   position: fixed;
   height: 1020px;
-  width: 640px;
+  width: 33.33333333333%;
+  padding: 0 80px;
 }
 
 .screen-content .sidebar-fixed {
@@ -44,16 +45,16 @@ body {
 }
 
 .screen-content .sidebar-search {
-  width: 640px;
+  /*width: 640px;*/
 }
 
 .screen-content .filter-group {
   margin-top: 330px;
-  width: 640px;
+  /*width: 640px;*/
 }
 
 .screen-content #filters {
-  width: 640px;
+  /*width: 640px;*/
 }
 
 .screen-content .filter-navigation {
@@ -100,7 +101,7 @@ body {
 
 .screen-content .schedule-content {
   height: 1020px;
-  width: 1280px;
+  /*width: 1280px;*/
 }
 
 .screen-content p {
@@ -258,4 +259,4 @@ body {
   font-size: 22px;
   font-style: italic;
   font-weight: 700;
-}*/
+}
