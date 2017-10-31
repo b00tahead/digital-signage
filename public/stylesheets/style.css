@@ -6,6 +6,10 @@ body {
   zoom: 1;
 }
 
+html::-webkit-scrollbar {
+  display: none;
+}
+
 #main,
 .container-fluid,
 .sidebar {
