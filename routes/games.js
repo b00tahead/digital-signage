@@ -6,7 +6,7 @@ const moment = require('moment');
 router.get('/', function(req, res, next) {
   function getData(url) {
     return getGames(url).then(function(games) {
-      res.render('games', { title: 'UK Athletics Schedules', games });
+      res.render('games', { title: 'UK Athletics Schedules', scheduleName: 'Composite', games });
     });
   }
 
@@ -35,7 +35,6 @@ function getGames(url) {
 
       var games = {
         "upcomingGame": 0,
-        "teamStats": [],
         "gameData": []
       };
 
@@ -156,17 +155,6 @@ function getGames(url) {
           "gameResult": gameResult
         });
       });
-
-      // "teamStats": [{
-      //   "overallRecord": "0-0",
-      //   "overallWinPercentage": ".000",
-      //   "conferenceRecord": "0-0",
-      //   "conferenceWinPercentage": ".000",
-      //   "currentStreak": "W0",
-      //   "homeRecord": "0-0",
-      //   "awayRecord": "0-0",
-      //   "neutralRecord": "0-0",
-      // }]
 
       games.gameData.some(function(item, index) {
         if (moment(item.fullGameTime).isSameOrAfter(moment().format('YYYY-MM-DD'), 'day')) {
