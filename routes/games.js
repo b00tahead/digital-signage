@@ -2,28 +2,96 @@ var express = require('express');
 var router = express.Router();
 const moment = require('moment');
 
-/* GET users listing. */
 router.get('/', function(req, res, next) {
-  function getData(url) {
-    return getGames(url).then(function(games) {
-      res.render('games', { title: 'UK Athletics Schedules', scheduleName: 'Composite', games });
+  function getData(url, composite) {
+    return getGames(url, composite).then(function(games) {
+      res.render('games', {
+        title: 'UK Athletics Schedules',
+        scheduleName: 'Composite',
+        compositeSchedule: true,
+        games
+      });
     });
   }
 
-  getData('http://www.ukathletics.com/calendar.ashx/calendar.rss');
+  getData('http://www.ukathletics.com/calendar.ashx/calendar.rss', true);
 });
 
 router.get('/:scheduleId', function(req, res, next) {
-  function getData(url) {
-    return getGames(url).then(function(games) {
-      res.render('games', { title: 'UK Athletics Schedules', scheduleName: 'Composite', games });
+  var scheduleId = req.params.scheduleId;
+  var scheduleName;
+
+  switch (scheduleId) {
+    case "1":
+      scheduleName = "Baseball";
+      break;
+    case "33":
+      scheduleName = "Cross Country";
+      break;
+    case "2":
+      scheduleName = "Football";
+      break;
+    case "4":
+      scheduleName = "Men's Basketball";
+      break;
+    case "6":
+      scheduleName = "Men's Golf";
+      break;
+    case "8":
+      scheduleName = "Men's Soccer";
+      break;
+    case "10":
+      scheduleName = "Men's Tennis";
+      break;
+    case "35":
+      scheduleName = "Rifle";
+      break;
+    case "12":
+      scheduleName = "Softball";
+      break;
+    case "31":
+      scheduleName = "Swimming & Diving";
+      break;
+    case "29":
+      scheduleName = "Track & Field";
+      break;
+    case "22":
+      scheduleName = "Volleyball";
+      break;
+    case "13":
+      scheduleName = "Women's Basketball";
+      break;
+    case "15":
+      scheduleName = "Women's Golf";
+      break;
+    case "16":
+      scheduleName = "Gymnastics";
+      break;
+    case "18":
+      scheduleName = "Women's Soccer";
+      break;
+    case "20":
+      scheduleName = "Women's Tennis";
+      break;
+    default:
+      scheduleName = "Composite";
+  }
+
+  function getData(url, composite) {
+    return getGames(url, composite).then(function(games) {
+      res.render('games', {
+        title: 'UK Athletics Schedules',
+        scheduleName: scheduleName,
+        compositeSchedule: false,
+        games
+      });
     });
   }
 
-  getData('http://www.ukathletics.com/calendar.ashx/calendar.rss' + "?sport_id=" + req.params.scheduleId);
+  getData('http://www.ukathletics.com/calendar.ashx/calendar.rss' + "?sport_id=" + scheduleId, false);
 });
 
-function getGames(url) {
+function getGames(url, composite) {
   return new Promise(function(resolve, reject) {
     var parser = require('rss-parser');
 
@@ -44,7 +112,6 @@ function getGames(url) {
     parser.parseURL(url, options, function(err, parsed) {
 
       var games = {
-        "upcomingGame": 0,
         "gameData": []
       };
 
@@ -131,45 +198,30 @@ function getGames(url) {
             sportType = "";
         }
 
-        var homeWins = 0;
-        var awayWins = 0;
-        var neutralWins = 0;
-        var homeLosses = 0;
-        var awayLosses = 0;
-        var neutralLosses = 0;
-        var homeTies = 0;
-        var awayTies = 0;
-        var neutralTies = 0;
-
         var gameDay = moment(entry.localStartDate).format('MMM D (ddd)');
         var gameTime = moment(entry.localStartDate).format('h:mm a');
+        var fullGameTime = moment(entry.localStartDate).format('YYYY-MM-DD')
 
         if (gameTime === '8:00 am' || gameTime === '12:00 am') {
           gameTime = '';
         }
 
-        games.gameData.push({
-          "sport": sportType,
-          "game": index + 1,
-          "gameId": entry.gameId,
-          "opponentName": opponentName.trim(),
-          "homeGame": homeGame,
-          "conferenceGame": "",
-          "location": entry.location,
-          "tvProvider": tvProvider,
-          "fullGameTime": moment(entry.localStartDate).format('YYYY-MM-DD'),
-          "gameDay": moment(entry.localStartDate).format('MMM D (ddd)'),
-          "gameTime": gameTime,
-          "opponentLogo": entry.opponentLogo,
-          "gamePromoName": entry.gamePromoName,
-          "gameResult": gameResult
-        });
-      });
-
-      games.gameData.some(function(item, index) {
-        if (moment(item.fullGameTime).isSameOrAfter(moment().format('YYYY-MM-DD'), 'day')) {
-          games.upcomingGame = item.gameId;
-          return true;
+        if (!composite || (composite && moment(fullGameTime).isSameOrAfter(moment().format('YYYY-MM-DD'), 'day'))) {
+          games.gameData.push({
+            "sport": sportType,
+            "game": index + 1,
+            "gameId": entry.gameId,
+            "opponentName": opponentName.trim(),
+            "homeGame": homeGame,
+            "conferenceGame": "",
+            "location": entry.location,
+            "tvProvider": tvProvider,
+            "gameDay": moment(entry.localStartDate).format('MMM D (ddd)'),
+            "gameTime": gameTime,
+            "opponentLogo": entry.opponentLogo,
+            "gamePromoName": entry.gamePromoName,
+            "gameResult": gameResult
+          });
         }
       });
       resolve(games);

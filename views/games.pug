@@ -7,59 +7,6 @@ block content
         div(class="row")
           div(class="sidebar col-sm-4")
             div(class="sidebar-fixed")
-              div(class="sidebar-search")
-                div(class="filter-group")
-                  div(id="schedules-filters")
-                    div(class="filters-container")
-                      div(class="filter-navigation")
-                        h2 Men's Sports
-                        ul(class="filter-list")
-                          li
-                            a(href="/games/1" class="button" data-filter=".baseball") Baseball
-                          li
-                            a(href="/games/4" class="button" data-filter=".mbball") Basketball
-                          li
-                            a(href="/games/33" class="button" data-filter=".cross") Cross Country
-                          li
-                            a(href="/games/2" class="button" data-filter=".football") Football
-                          li
-                            a(href="/games/6" class="button" data-filter=".mgolf") Golf
-                          li
-                            a(href="/games/35" class="button" data-filter=".rifle") Rifle
-                          li
-                            a(href="/games/8" class="button" data-filter=".msoc") Soccer
-                          li
-                            a(href="/games/31" class="button" data-filter=".swimming") Swimming &amp; Diving
-                          li
-                            a(href="/games/10" class="button" data-filter=".mten") Tennis
-                          li
-                            a(href="/games/29" class="button" data-filter=".track") Track &amp; Field
-                      div(class="filter-navigation")
-                        h2 Women's Sports
-                        ul(class="filter-list")
-                          
-                          li
-                            a(href="/games/13" class="button" data-filter=".wbball") Basketball
-                          li
-                            a(href="/games/33" class="button" data-filter=".cross") Cross Country
-                          li
-                            a(href="/games/15" class="button" data-filter=".wgolf") Golf
-                          li
-                            a(href="/games/16" class="button" data-filter=".wgym") Gymnastics
-                          li
-                            a(href="/games/35" class="button" data-filter=".rifle") Rifle
-                          li
-                            a(href="/games/18" class="button" data-filter=".wsoc") Soccer
-                          li
-                            a(href="/games/12" class="button" data-filter=".softball") Softball
-                          li
-                            a(href="/games/31" class="button" data-filter=".swimming") Swimming &amp; Diving
-                          li
-                            a(href="/games/20" class="button" data-filter=".wten") Tennis
-                          li
-                            a(href="/games/29" class="button" data-filter=".track") Track &amp; Field
-                          li
-                            a(href="/games/22" class="button" data-filter=".wvball") Volleyball
           div(class="staff-content col-sm-8")
             div(id="schedules-banner" class="flexcontainer")
               img(src="/images/uk_main.png" class="img-responsive")
@@ -69,12 +16,14 @@ block content
               div(id="schedules-grid")
                 each game in games.gameData
                   div(id=game.gameId class="schedule-grid-row")
-                    div(class="schedule-grid-item grid-sport flexcontainer")
-                      p(class="rotate") #{game.sport}
+                    if (compositeSchedule)
+                      div(class="schedule-grid-item grid-sport flexcontainer")
+                        p(class="rotate") #{game.sport}
                     div(class="schedule-grid-item grid-logo")
                       if (game.opponentLogo)
                         img(src=game.opponentLogo)
-                      
+                      else
+                        img(src="/images/uk_default.png")
                     div(class="schedule-grid-item grid-game-info")
                       p(class="schedule-gametime")
                         span(class="day") #{game.gameDay}
