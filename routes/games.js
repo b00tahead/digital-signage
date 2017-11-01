@@ -13,6 +13,16 @@ router.get('/', function(req, res, next) {
   getData('http://www.ukathletics.com/calendar.ashx/calendar.rss');
 });
 
+router.get('/:scheduleId', function(req, res, next) {
+  function getData(url) {
+    return getGames(url).then(function(games) {
+      res.render('games', { title: 'UK Athletics Schedules', scheduleName: 'Composite', games });
+    });
+  }
+
+  getData('http://www.ukathletics.com/calendar.ashx/calendar.rss' + "?sport_id=" + req.params.scheduleId);
+});
+
 function getGames(url) {
   return new Promise(function(resolve, reject) {
     var parser = require('rss-parser');
@@ -158,11 +168,10 @@ function getGames(url) {
 
       games.gameData.some(function(item, index) {
         if (moment(item.fullGameTime).isSameOrAfter(moment().format('YYYY-MM-DD'), 'day')) {
-          games.upcomingGame = index;
+          games.upcomingGame = item.gameId;
           return true;
         }
       });
-      console.log(games.gameData[games.upcomingGame].fullGameTime);
       resolve(games);
     });
   });

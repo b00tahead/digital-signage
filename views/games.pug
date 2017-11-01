@@ -15,51 +15,51 @@ block content
                         h2 Men's Sports
                         ul(class="filter-list")
                           li
-                            a(href="#" class="button is-checked" data-filter=".baseball") Baseball
+                            a(href="/games/1" class="button" data-filter=".baseball") Baseball
                           li
-                            a(href="#" class="button" data-filter=".mbball") Basketball
+                            a(href="/games/4" class="button" data-filter=".mbball") Basketball
                           li
-                            a(href="#" class="button" data-filter=".cross") Cross Country
+                            a(href="/games/33" class="button" data-filter=".cross") Cross Country
                           li
-                            a(href="#" class="button" data-filter=".football") Football
+                            a(href="/games/2" class="button" data-filter=".football") Football
                           li
-                            a(href="#" class="button" data-filter=".mgolf") Golf
+                            a(href="/games/6" class="button" data-filter=".mgolf") Golf
                           li
-                            a(href="#" class="button" data-filter=".rifle") Rifle
+                            a(href="/games/35" class="button" data-filter=".rifle") Rifle
                           li
-                            a(href="#" class="button" data-filter=".msoc") Soccer
+                            a(href="/games/8" class="button" data-filter=".msoc") Soccer
                           li
-                            a(href="#" class="button" data-filter=".swimming") Swimming &amp; Diving
+                            a(href="/games/31" class="button" data-filter=".swimming") Swimming &amp; Diving
                           li
-                            a(href="#" class="button" data-filter=".mten") Tennis
+                            a(href="/games/10" class="button" data-filter=".mten") Tennis
                           li
-                            a(href="#" class="button" data-filter=".track") Track &amp; Field
+                            a(href="/games/29" class="button" data-filter=".track") Track &amp; Field
                       div(class="filter-navigation")
                         h2 Women's Sports
                         ul(class="filter-list")
                           
                           li
-                            a(href="#" class="button" data-filter=".wbball") Basketball
+                            a(href="/games/13" class="button" data-filter=".wbball") Basketball
                           li
-                            a(href="#" class="button" data-filter=".cross") Cross Country
+                            a(href="/games/33" class="button" data-filter=".cross") Cross Country
                           li
-                            a(href="#" class="button" data-filter=".wgolf") Golf
+                            a(href="/games/15" class="button" data-filter=".wgolf") Golf
                           li
-                            a(href="#" class="button" data-filter=".wgym") Gymnastics
+                            a(href="/games/16" class="button" data-filter=".wgym") Gymnastics
                           li
-                            a(href="#" class="button" data-filter=".rifle") Rifle
+                            a(href="/games/35" class="button" data-filter=".rifle") Rifle
                           li
-                            a(href="#" class="button" data-filter=".wsoc") Soccer
+                            a(href="/games/18" class="button" data-filter=".wsoc") Soccer
                           li
-                            a(href="#" class="button" data-filter=".softball") Softball
+                            a(href="/games/12" class="button" data-filter=".softball") Softball
                           li
-                            a(href="#" class="button" data-filter=".swimming") Swimming &amp; Diving
+                            a(href="/games/31" class="button" data-filter=".swimming") Swimming &amp; Diving
                           li
-                            a(href="#" class="button" data-filter=".wten") Tennis
+                            a(href="/games/20" class="button" data-filter=".wten") Tennis
                           li
-                            a(href="#" class="button" data-filter=".track") Track &amp; Field
+                            a(href="/games/29" class="button" data-filter=".track") Track &amp; Field
                           li
-                            a(href="#" class="button" data-filter=".wvball") Volleyball
+                            a(href="/games/22" class="button" data-filter=".wvball") Volleyball
           div(class="staff-content col-sm-8")
             div(id="schedules-banner" class="flexcontainer")
               img(src="/images/uk_main.png" class="img-responsive")
@@ -68,11 +68,13 @@ block content
             div(class="staff-wrapper clearfix")
               div(id="schedules-grid")
                 each game in games.gameData
-                  div(class="schedule-grid-row")
+                  div(id=game.gameId class="schedule-grid-row")
                     div(class="schedule-grid-item grid-sport flexcontainer")
                       p(class="rotate") #{game.sport}
                     div(class="schedule-grid-item grid-logo")
-                      img(src=game.opponentLogo)
+                      if (game.opponentLogo)
+                        img(src=game.opponentLogo)
+                      
                     div(class="schedule-grid-item grid-game-info")
                       p(class="schedule-gametime")
                         span(class="day") #{game.gameDay}
