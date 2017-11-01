@@ -13,6 +13,7 @@ body {
   margin: 0;
   padding: 0;
   zoom: 1;
+  background-color: transparent;
 }
 
 html::-webkit-scrollbar {
@@ -567,7 +568,7 @@ h1 {
 
 .page-schedules #schedules-banner {
   height: 152px;
-  background-color: #fff;
+  background-color: transparent;
 }
 
 .page-schedules #schedules-banner img {
