@@ -678,6 +678,8 @@ h1 {
 .page-schedules .schedule-wrapper {
   /*height: 822px;*/
   /*overflow: auto;*/
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 /*.page-schedules .schedule-wrapper::-webkit-scrollbar{
   display: none;
