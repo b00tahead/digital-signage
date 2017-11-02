@@ -669,19 +669,19 @@ h1 {
   float: right;
   clear: both;
 }
-.page-schedules .staff-content {
+.page-schedules .schedule-content {
   height: 1020px;
   padding-left: 0;
   padding-right: 0;
-
+  /*overflow: hidden;*/
 }
-.page-schedules .staff-wrapper {
-  height: 822px;
-  overflow: auto;
+.page-schedules .schedule-wrapper {
+  /*height: 822px;*/
+  /*overflow: auto;*/
 }
-.page-schedules .staff-wrapper::-webkit-scrollbar{
+/*.page-schedules .schedule-wrapper::-webkit-scrollbar{
   display: none;
-}
+}*/
 .page-schedules .schedules-title p {
   font-family: 'Roboto Slab', serif;
   font-weight: 700;
@@ -697,7 +697,7 @@ h1 {
 
 .page-schedules .schedule-grid-row {
   height: 120px;
-  width: 1280px;
+  /*width: 1280px;*/
   padding: 20px 0;
   border-left: 6px solid #fff;
   border-right: 6px solid #fff;
@@ -749,7 +749,7 @@ h1 {
 
 .page-schedules .grid-game-info {
   height: 80px;
-  width: 400px;
+  width: 450px;
   margin-left: 20px;
   color: #262626;
 }
@@ -797,7 +797,7 @@ h1 {
 }
 
 .page-schedules .grid-location {
-  width: 250px;
+  width: 300px;
   height: 80px;
   margin-left: 20px;
   font-size: 16px;
