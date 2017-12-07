@@ -23,5 +23,8 @@
     "rss-parser": "2.10.6",
     "scroll-to-element": "2.0.0",
     "serve-favicon": "~2.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.5"
   }
 }
