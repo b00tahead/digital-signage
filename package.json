@@ -21,6 +21,7 @@
     "morgan": "~1.8.1",
     "pug": "~2.0.0-beta11",
     "rss-parser": "2.10.6",
+    "scroll-to-element": "2.0.0",
     "serve-favicon": "~2.4.2"
   }
 }
