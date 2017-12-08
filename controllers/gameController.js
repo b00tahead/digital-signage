@@ -4,7 +4,7 @@ const moment = require('moment');
 exports.composite_schedule = function(req, res) {
   function getData(url, composite) {
     return getGames(url, composite).then(function(games) {
-      res.render('games', {
+      res.json({
         title: 'UK Athletics Schedules',
         scheduleName: 'Composite',
         compositeSchedule: true,
@@ -79,7 +79,7 @@ exports.schedule_detail = function(req, res) {
 
   function getData(url, composite) {
     return getGames(url, composite).then(function(games) {
-      res.render('games', {
+      res.json({
         title: 'UK Athletics Schedules',
         scheduleName: scheduleName,
         compositeSchedule: false,
@@ -112,6 +112,7 @@ function getGames(url, composite) {
     parser.parseURL(url, options, function(err, parsed) {
 
       var games = {
+        "upcomingGame": "",
         "gameData": []
       };
 
@@ -206,22 +207,28 @@ function getGames(url, composite) {
           gameTime = '';
         }
 
-        if (!composite || (composite && moment(fullGameTime).isSameOrAfter(moment().format('YYYY-MM-DD'), 'day'))) {
-          games.gameData.push({
-            "sport": sportType,
-            "game": index + 1,
-            "gameId": entry.gameId,
-            "opponentName": opponentName.trim(),
-            "homeGame": homeGame,
-            "conferenceGame": "",
-            "location": entry.location,
-            "tvProvider": tvProvider,
-            "gameDay": moment(entry.localStartDate).format('MMM D (ddd)'),
-            "gameTime": gameTime,
-            "opponentLogo": entry.opponentLogo,
-            "gamePromoName": entry.gamePromoName,
-            "gameResult": gameResult
-          });
+        games.gameData.push({
+          "sport": sportType,
+          "game": index + 1,
+          "gameId": entry.gameId,
+          "opponentName": opponentName.trim(),
+          "homeGame": homeGame,
+          "conferenceGame": "",
+          "location": entry.location,
+          "tvProvider": tvProvider,
+          "gameDay": moment(entry.localStartDate).format('MMM D (ddd)'),
+          "gameTime": gameTime,
+          "fullGameTime": fullGameTime,
+          "opponentLogo": entry.opponentLogo,
+          "gamePromoName": entry.gamePromoName,
+          "gameResult": gameResult
+        });
+      });
+      games.gameData.some(function(item, index) {
+        console.log('item', item.fullGameTime);
+        if (moment(item.fullGameTime).isSameOrAfter(moment().format('YYYY-MM-DD'), 'day')) {
+          games.upcomingGame = item.gameId;
+          return true;
         }
       });
       resolve(games);
