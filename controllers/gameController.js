@@ -225,7 +225,6 @@ function getGames(url, composite) {
         });
       });
       games.gameData.some(function(item, index) {
-        console.log('item', item.fullGameTime);
         if (moment(item.fullGameTime).isSameOrAfter(moment().format('YYYY-MM-DD'), 'day')) {
           games.upcomingGame = item.gameId;
           return true;
