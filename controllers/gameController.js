@@ -140,12 +140,19 @@ function getGames(url, composite) {
           }
         });
 
-        var homeGame = false;
-        var opponentName;
-        var sportType;
+        let homeGame = false;
+        let opponentName;
+        let sportType;
 
-        var entryTitle = entry.title;
-        var opponentNameSplit = entryTitle.split(' at ');
+        let entryTitle = entry.title;
+        const gamePromo = entry.gamePromoName;
+        const gamePromoWithDash = ' - ' + gamePromo;
+        const gamePromoInEntryTitle = entryTitle.indexOf(gamePromoWithDash);
+
+        if (gamePromoInEntryTitle > 0) {
+          entryTitle = entryTitle.substring(0, gamePromoInEntryTitle);
+          console.log('entryTitle', entryTitle);
+        }
 
         if (entryTitle.indexOf(' vs ') == -1) {
           opponentName = entryTitle.substring(entryTitle.indexOf('at') + 2);
