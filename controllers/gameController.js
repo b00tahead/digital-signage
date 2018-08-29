@@ -147,16 +147,20 @@ function getGames(url, composite) {
         var entryTitle = entry.title;
         var opponentNameSplit = entryTitle.split(' at ');
 
-        if (entryTitle.indexOf(' at ') == -1) {
+        if (entryTitle.indexOf(' vs ') == -1) {
+          opponentName = entryTitle.substring(entryTitle.indexOf('at') + 2);
+          const breakAtFirstAt = entryTitle.substring(
+            0,
+            entryTitle.indexOf('at') + 2
+          );
+          sportType = breakAtFirstAt
+            .match(new RegExp('University of Kentucky' + '(.*)' + ' at'))[1]
+            .trim();
+        } else {
           homeGame = true;
           opponentName = entryTitle.substring(entryTitle.indexOf('vs') + 2);
           sportType = entryTitle
             .match(new RegExp('University of Kentucky' + '(.*)' + ' vs '))[1]
-            .trim();
-        } else {
-          opponentName = entryTitle.substring(entryTitle.indexOf('at') + 2);
-          sportType = entryTitle
-            .match(new RegExp('University of Kentucky' + '(.*)' + ' at '))[1]
             .trim();
         }
 
@@ -165,6 +169,12 @@ function getGames(url, composite) {
             break;
           case 'Cross Country':
             sportType = 'Cross';
+            break;
+          case "Women's Cross Country":
+            sportType = 'Wcross';
+            break;
+          case "Men's Cross Country":
+            sportType = 'Mcross';
             break;
           case 'Football':
             break;
