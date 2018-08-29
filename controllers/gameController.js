@@ -22,59 +22,59 @@ exports.schedule_detail = function(req, res) {
   var scheduleName;
 
   switch (scheduleId) {
-    case "1":
-      scheduleName = "Baseball";
+    case '1':
+      scheduleName = 'Baseball';
       break;
-    case "33":
-      scheduleName = "Cross Country";
+    case '33':
+      scheduleName = 'Cross Country';
       break;
-    case "2":
-      scheduleName = "Football";
+    case '2':
+      scheduleName = 'Football';
       break;
-    case "4":
+    case '4':
       scheduleName = "Men's Basketball";
       break;
-    case "6":
+    case '6':
       scheduleName = "Men's Golf";
       break;
-    case "8":
+    case '8':
       scheduleName = "Men's Soccer";
       break;
-    case "10":
+    case '10':
       scheduleName = "Men's Tennis";
       break;
-    case "35":
-      scheduleName = "Rifle";
+    case '35':
+      scheduleName = 'Rifle';
       break;
-    case "12":
-      scheduleName = "Softball";
+    case '12':
+      scheduleName = 'Softball';
       break;
-    case "31":
-      scheduleName = "Swimming & Diving";
+    case '31':
+      scheduleName = 'Swimming & Diving';
       break;
-    case "29":
-      scheduleName = "Track & Field";
+    case '29':
+      scheduleName = 'Track & Field';
       break;
-    case "22":
-      scheduleName = "Volleyball";
+    case '22':
+      scheduleName = 'Volleyball';
       break;
-    case "13":
+    case '13':
       scheduleName = "Women's Basketball";
       break;
-    case "15":
+    case '15':
       scheduleName = "Women's Golf";
       break;
-    case "16":
-      scheduleName = "Gymnastics";
+    case '16':
+      scheduleName = 'Gymnastics';
       break;
-    case "18":
+    case '18':
       scheduleName = "Women's Soccer";
       break;
-    case "20":
+    case '20':
       scheduleName = "Women's Tennis";
       break;
     default:
-      scheduleName = "Composite";
+      scheduleName = 'Composite';
   }
 
   function getData(url, composite) {
@@ -88,7 +88,12 @@ exports.schedule_detail = function(req, res) {
     });
   }
 
-  getData('http://www.ukathletics.com/calendar.ashx/calendar.rss' + "?sport_id=" + scheduleId, false);
+  getData(
+    'http://www.ukathletics.com/calendar.ashx/calendar.rss' +
+      '?sport_id=' +
+      scheduleId,
+    false
+  );
 };
 
 function getGames(url, composite) {
@@ -110,10 +115,9 @@ function getGames(url, composite) {
     };
 
     parser.parseURL(url, options, function(err, parsed) {
-
       var games = {
-        "upcomingGame": "",
-        "gameData": []
+        upcomingGame: '',
+        gameData: []
       };
 
       parsed.feed.entries.forEach(function(entry, index) {
@@ -126,7 +130,12 @@ function getGames(url, composite) {
           if (item.toLowerCase().includes('tv:')) {
             tvProvider = item;
           }
-          if (item.toLowerCase().startsWith('w ') || item.toLowerCase().startsWith('l ') || item.toLowerCase().startsWith('n ') || item.toLowerCase().startsWith('t ')) {
+          if (
+            item.toLowerCase().startsWith('w ') ||
+            item.toLowerCase().startsWith('l ') ||
+            item.toLowerCase().startsWith('n ') ||
+            item.toLowerCase().startsWith('t ')
+          ) {
             gameResult = item;
           }
         });
@@ -136,96 +145,105 @@ function getGames(url, composite) {
         var sportType;
 
         var entryTitle = entry.title;
-        var opponentNameSplit = entryTitle.split(' at  ');
+        var opponentNameSplit = entryTitle.split(' at ');
 
-        if (entryTitle.indexOf(" at  ") == -1) {
+        if (entryTitle.indexOf(' at ') == -1) {
           homeGame = true;
-          opponentName = entryTitle.substring(entryTitle.indexOf("vs") + 2);
-          sportType = entryTitle.match(new RegExp("University of Kentucky" + "(.*)" + " vs  "))[1].trim();
+          opponentName = entryTitle.substring(entryTitle.indexOf('vs') + 2);
+          sportType = entryTitle
+            .match(new RegExp('University of Kentucky' + '(.*)' + ' vs '))[1]
+            .trim();
         } else {
-          opponentName = entryTitle.substring(entryTitle.indexOf("at") + 2);
-          sportType = entryTitle.match(new RegExp("University of Kentucky" + "(.*)" + " at  "))[1].trim();
+          opponentName = entryTitle.substring(entryTitle.indexOf('at') + 2);
+          sportType = entryTitle
+            .match(new RegExp('University of Kentucky' + '(.*)' + ' at '))[1]
+            .trim();
         }
 
         switch (sportType) {
-          case "Baseball":
+          case 'Baseball':
             break;
-          case "Cross Country":
-            sportType = "Cross";
+          case 'Cross Country':
+            sportType = 'Cross';
             break;
-          case "Football":
+          case 'Football':
             break;
           case "Men's Basketball":
-            sportType = "Mbball";
+            sportType = 'Mbball';
             break;
           case "Men's Golf":
-            sportType = "Mgolf";
+            sportType = 'Mgolf';
             break;
           case "Men's Soccer":
-            sportType = "Msoc";
+            sportType = 'Msoc';
             break;
           case "Men's Tennis":
-            sportType = "Mten";
+            sportType = 'Mten';
             break;
-          case "Rifle":
+          case 'Rifle':
             break;
-          case "Softball":
+          case 'Softball':
             break;
-          case "Swimming & Diving":
-            sportType = "Swimming";
+          case 'Swimming & Diving':
+            sportType = 'Swimming';
             break;
-          case "Track & Field":
-            sportType = "Track";
+          case 'Track & Field':
+            sportType = 'Track';
             break;
-          case "Volleyball":
-            sportType = "Wvball";
+          case 'Volleyball':
+            sportType = 'Wvball';
             break;
           case "Women's Basketball":
-            sportType = "Wbball";
+            sportType = 'Wbball';
             break;
           case "Women's Golf":
-            sportType = "Wgolf";
+            sportType = 'Wgolf';
             break;
           case "Women's Gymnastics":
-            sportType = "Wgym";
+            sportType = 'Wgym';
             break;
           case "Women's Soccer":
-            sportType = "Wsoc";
+            sportType = 'Wsoc';
             break;
           case "Women's Tennis":
-            sportType = "Wten";
+            sportType = 'Wten';
             break;
           default:
-            sportType = "";
+            sportType = '';
         }
 
         var gameDay = moment(entry.localStartDate).format('MMM D (ddd)');
         var gameTime = moment(entry.localStartDate).format('h:mm a');
-        var fullGameTime = moment(entry.localStartDate).format('YYYY-MM-DD')
+        var fullGameTime = moment(entry.localStartDate).format('YYYY-MM-DD');
 
         if (gameTime === '8:00 am' || gameTime === '12:00 am') {
           gameTime = '';
         }
 
         games.gameData.push({
-          "sport": sportType,
-          "game": index + 1,
-          "gameId": entry.gameId,
-          "opponentName": opponentName.trim(),
-          "homeGame": homeGame,
-          "conferenceGame": "",
-          "location": entry.location,
-          "tvProvider": tvProvider,
-          "gameDay": moment(entry.localStartDate).format('MMM D (ddd)'),
-          "gameTime": gameTime,
-          "fullGameTime": fullGameTime,
-          "opponentLogo": entry.opponentLogo,
-          "gamePromoName": entry.gamePromoName,
-          "gameResult": gameResult
+          sport: sportType,
+          game: index + 1,
+          gameId: entry.gameId,
+          opponentName: opponentName.trim(),
+          homeGame: homeGame,
+          conferenceGame: '',
+          location: entry.location,
+          tvProvider: tvProvider,
+          gameDay: moment(entry.localStartDate).format('MMM D (ddd)'),
+          gameTime: gameTime,
+          fullGameTime: fullGameTime,
+          opponentLogo: entry.opponentLogo,
+          gamePromoName: entry.gamePromoName,
+          gameResult: gameResult
         });
       });
       games.gameData.some(function(item, index) {
-        if (moment(item.fullGameTime).isSameOrAfter(moment().format('YYYY-MM-DD'), 'day')) {
+        if (
+          moment(item.fullGameTime).isSameOrAfter(
+            moment().format('YYYY-MM-DD'),
+            'day'
+          )
+        ) {
           games.upcomingGame = item.gameId;
           return true;
         }
