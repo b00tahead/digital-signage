@@ -10,22 +10,21 @@
     "devstart": "nodemon ./bin/www"
   },
   "dependencies": {
-    "body-parser": "~1.17.1",
+    "body-parser": "1.18.3",
     "compression": "1.7.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
-    "express": "~4.15.2",
+    "express": "4.16.3",
     "helmet": "3.9.0",
     "isotope-layout": "3.0.4",
     "moment": "2.19.3",
-    "morgan": "~1.8.1",
-    "node-mime": "1.0.0",
+    "morgan": "1.9.0",
     "pug": "~2.0.0-beta11",
     "rss-parser": "2.10.6",
     "scroll-to-element": "2.0.0",
     "serve-favicon": "~2.4.2"
   },
   "devDependencies": {
-    "nodemon": "^1.12.5"
+    "nodemon": "1.18.3"
   }
 }
