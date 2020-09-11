@@ -18,7 +18,7 @@
     "helmet": "3.9.0",
     "isotope-layout": "3.0.4",
     "moment": "2.19.3",
-    "morgan": "1.9.0",
+    "morgan": "1.9.1",
     "pug": "~2.0.0-beta11",
     "rss-parser": "2.10.6",
     "scroll-to-element": "2.0.0",
