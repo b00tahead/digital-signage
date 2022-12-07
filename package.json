@@ -14,7 +14,7 @@
     "compression": "1.7.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
-    "express": "4.16.3",
+    "express": "4.17.3",
     "helmet": "3.9.0",
     "isotope-layout": "3.0.4",
     "moment": "2.19.3",
